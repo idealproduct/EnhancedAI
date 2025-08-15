@@ -15,7 +15,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import static insane96mcp.enhancedai.Modblocks.BLOCKS;
-import static insane96mcp.enhancedai.modentity.TILE_ENTITIES;
+import static insane96mcp.enhancedai.ModQuack.TILE_ENTITIES;
 
 @Mod(EnhancedAI.MOD_ID)
 public class EnhancedAI

@@ -4,10 +4,9 @@ import insane96mcp.enhancedai.blocks.ProtectorMachineBlockEntity;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 
-public class modentity {
+public class ModQuack {
     public static final DeferredRegister<BlockEntityType<?>> TILE_ENTITIES =
             DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, "enhancedai");
 

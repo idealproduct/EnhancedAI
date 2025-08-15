@@ -1,6 +1,6 @@
 package insane96mcp.enhancedai.blocks;
 
-import insane96mcp.enhancedai.modentity;
+import insane96mcp.enhancedai.ModQuack;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -22,7 +22,7 @@ public class ProtectorMachineBlockEntity extends BlockEntity {
     private int range = 5;
 
     public ProtectorMachineBlockEntity(BlockPos pos, BlockState state) {
-        super(modentity.PROTECTOR_MACHINE.get(), pos, state);
+        super(ModQuack.PROTECTOR_MACHINE.get(), pos, state);
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, ProtectorMachineBlockEntity be) {
