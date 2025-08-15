@@ -1,5 +1,7 @@
 package insane96mcp.enhancedai.modules.zombie.ai;
 
+import com.mojang.datafixers.util.Pair;
+import insane96mcp.enhancedai.blocks.ProtectorMachineBlockEntity;
 import insane96mcp.enhancedai.modules.zombie.feature.DiggerZombie;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -16,21 +18,21 @@ import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.Path;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.ForgeEventFactory;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.EnumSet;
-import java.util.List;
+import java.util.*;
 
 public class DiggingGoal extends Goal {
+	public static final Map<BlockPos, Pair<Level, AABB>> protectedAreas = new HashMap<>();
 
 	private final Zombie digger;
 	private final int thedayzombiecanmine;
@@ -46,7 +48,7 @@ public class DiggingGoal extends Goal {
 	private final boolean properToolOnly;
 
 	private Vec3 lastPosition = null;
-	private int lastPositionTickstamp = 0;;
+	private int lastPositionTickstamp = 0;
 
 	public DiggingGoal(Zombie digger, double maxDistanceFromTarget, boolean toolOnly, boolean properToolOnly, int thedayzombiecanmine){
 		this.digger = digger;
@@ -187,6 +189,10 @@ public class DiggingGoal extends Goal {
 			if (DiggerZombie.blockBlacklist.isBlockBlackOrNotWhiteListed(state.getBlock()))
 				continue;
 
+			// By october
+			if (isTargetProtected(rayTraceResult.getBlockPos()))
+				continue;
+
 			this.targetBlocks.add(rayTraceResult.getBlockPos());
 		}
 		Collections.reverse(this.targetBlocks);
@@ -261,5 +267,15 @@ public class DiggingGoal extends Goal {
 			return false;
 
 		return stack.isCorrectToolForDrops(this.blockState);
+	}
+
+	// By october
+	private boolean isTargetProtected(BlockPos targetBlocksPos) {
+		return protectedAreas
+				.values()
+				.stream()
+				.anyMatch(pair ->
+						pair.getFirst().equals(digger.getLevel()) &&
+						pair.getSecond().contains(Vec3.atCenterOf(targetBlocksPos)));
 	}
 }

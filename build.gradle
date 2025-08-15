@@ -102,6 +102,7 @@ dependencies {
     implementation fg.deobf("curse.maven:autumnity-365045:4415512")
     implementation fg.deobf("curse.maven:blueprint-382216:4442628")
 
+    implementation fg.deobf("curse.maven:mekanism-268560:4644795")
 }
 
 jar {
