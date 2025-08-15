@@ -23,9 +23,4 @@ public class Modblocks {
                                     .strength(3.5f)
                                     .requiresCorrectToolForDrops()
                     ));
-
-
-    public static void register() {
-        BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
-    }
 }

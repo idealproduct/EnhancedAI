@@ -15,8 +15,4 @@ public class modentity {
             TILE_ENTITIES.register("protector_machine",
                     () -> BlockEntityType.Builder.of(
                             ProtectorMachineBlockEntity::new, Modblocks.PROTECTOR_MACHINE.get()).build(null));
-
-    public static void register() {
-        TILE_ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
-    }
 }

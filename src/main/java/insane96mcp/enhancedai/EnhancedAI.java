@@ -14,6 +14,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import static insane96mcp.enhancedai.Modblocks.BLOCKS;
 import static insane96mcp.enhancedai.modentity.TILE_ENTITIES;
 
 @Mod(EnhancedAI.MOD_ID)
@@ -27,7 +28,7 @@ public class EnhancedAI
         ModLoadingContext.get().registerConfig(net.minecraftforge.fml.config.ModConfig.Type.COMMON, Config.COMMON_SPEC);
 
         MinecraftForge.EVENT_BUS.register(this);
-
+        BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
         TILE_ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
         EASounds.SOUND_EVENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
 		EAAttributes.ATTRIBUTES.register(FMLJavaModLoadingContext.get().getModEventBus());
