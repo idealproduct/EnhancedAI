@@ -1,17 +1,25 @@
 package insane96mcp.enhancedai;
 
-import insane96mcp.enhancedai.blocks.ProtectorMachineBlockEntity;
+import insane96mcp.enhancedai.blocks.ProtectorMachineBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.Material;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import net.minecraft.world.level.block.entity.BlockEntityType;
+
+
+
 
 public class ModQuack {
-    public static final DeferredRegister<BlockEntityType<?>> TILE_ENTITIES =
-            DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, "enhancedai");
+    public static final DeferredRegister<Block> BLOCKS =
+            DeferredRegister.create(ForgeRegistries.BLOCKS, "enhancedai");
 
-    public static final RegistryObject<BlockEntityType<ProtectorMachineBlockEntity>> PROTECTOR_MACHINE =
-            TILE_ENTITIES.register("protector_machine",
-                    () -> BlockEntityType.Builder.of(
-                            ProtectorMachineBlockEntity::new, Modblocks.PROTECTOR_MACHINE.get()).build(null));
+    public static final RegistryObject<Block> PROTECTOR_MACHINE =
+            BLOCKS.register("protector_machine",
+                    () -> new ProtectorMachineBlock(
+                            BlockBehaviour.Properties.of(Material.METAL)
+                                    .strength(3.5f)
+                                    .requiresCorrectToolForDrops()
+                    ));
 }

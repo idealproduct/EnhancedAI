@@ -1,6 +1,6 @@
 package insane96mcp.enhancedai.blocks;
 
-import insane96mcp.enhancedai.ModQuack;
+import insane96mcp.enhancedai.ModEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -24,7 +24,7 @@ public class ProtectorMachineBlock extends Block implements EntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return ModQuack.PROTECTOR_MACHINE.get().create(pos, state);
+        return ModEntities.PROTECTOR_MACHINE.get().create(pos, state);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class ProtectorMachineBlock extends Block implements EntityBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(
             Level level, BlockState state, BlockEntityType<T> type) {
-        return !level.isClientSide && type == ModQuack.PROTECTOR_MACHINE.get()
+        return !level.isClientSide && type == ModEntities.PROTECTOR_MACHINE.get()
                 ? (lvl, pos, st, be) -> ProtectorMachineBlockEntity.tick(lvl, pos, st, (ProtectorMachineBlockEntity) be)
                 : null;
     }
