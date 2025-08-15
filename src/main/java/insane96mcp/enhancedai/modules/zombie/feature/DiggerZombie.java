@@ -28,6 +28,9 @@ public class DiggerZombie extends Feature {
 	@Label(name = "Digger Chance", description = "Chance for a Zombie to spawn with the digger ability")
 	public static Double diggerChance = 0.07d;
 	@Config
+	@Label(name = "The Day zombie Can Mine", description = "The Day Zombie Can Mine")
+	public static Integer thedayzombiecanmine = 50;
+	@Config
 	@Label(name = "Digger Tool Only", description = "Zombies with Digger AI will mine only if they have any tool in the off-hand")
 	public static Boolean diggerToolOnly = false;
 	@Config
@@ -75,7 +78,7 @@ public class DiggerZombie extends Feature {
 		boolean diggerProperToolOnly1 = NBTUtils.getBooleanOrPutDefault(persistentData, EAStrings.Tags.Zombie.PROPER_TOOL_ONLY, diggerProperToolOnly);
 
 		if (miner) {
-			zombie.goalSelector.addGoal(1, new DiggingGoal(zombie, maxDistance, diggerToolOnly1, diggerProperToolOnly1));
+			zombie.goalSelector.addGoal(1, new DiggingGoal(zombie, maxDistance, diggerToolOnly1, diggerProperToolOnly1, thedayzombiecanmine));
 			if (equipWoodenPick)
 			{
 				zombie.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(Items.WOODEN_PICKAXE));

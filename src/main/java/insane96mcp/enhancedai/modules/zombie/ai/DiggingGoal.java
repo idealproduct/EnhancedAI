@@ -2,6 +2,8 @@ package insane96mcp.enhancedai.modules.zombie.ai;
 
 import insane96mcp.enhancedai.modules.zombie.feature.DiggerZombie;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
@@ -31,6 +33,7 @@ import java.util.List;
 public class DiggingGoal extends Goal {
 
 	private final Zombie digger;
+	private final int thedayzombiecanmine;
 	private LivingEntity target;
 	private final double reachDistance;
 	private final double maxDistanceFromTarget;
@@ -43,15 +46,16 @@ public class DiggingGoal extends Goal {
 	private final boolean properToolOnly;
 
 	private Vec3 lastPosition = null;
-	private int lastPositionTickstamp = 0;
+	private int lastPositionTickstamp = 0;;
 
-	public DiggingGoal(Zombie digger, double maxDistanceFromTarget, boolean toolOnly, boolean properToolOnly){
+	public DiggingGoal(Zombie digger, double maxDistanceFromTarget, boolean toolOnly, boolean properToolOnly, int thedayzombiecanmine){
 		this.digger = digger;
 		this.reachDistance = 4;
 		this.maxDistanceFromTarget = maxDistanceFromTarget == 0 ? 64 * 64 : maxDistanceFromTarget * maxDistanceFromTarget;
 		this.toolOnly = toolOnly;
 		this.properToolOnly = properToolOnly;
 		this.setFlags(EnumSet.of(Flag.LOOK));
+		this.thedayzombiecanmine = thedayzombiecanmine;
 	}
 
 	public boolean canUse() {
@@ -108,6 +112,21 @@ public class DiggingGoal extends Goal {
 	}
 
 	public void tick() {
+		LivingEntity var2 = digger.getTarget();
+		if (var2 instanceof ServerPlayer player) {
+			CompoundTag data = player.getPersistentData();
+			long joinTick = data.getLong("JoinTick");
+			if (joinTick == 0L) {
+				joinTick = player.level.getGameTime();
+				data.putLong("JoinTick", joinTick);
+			}
+
+			long currentTick = digger.level.getGameTime();
+			long days = (currentTick - joinTick) / 24000L;
+			if (days < thedayzombiecanmine) {
+				return;
+			}
+		}
 		if (this.targetBlocks.isEmpty())
 			return;
 		if (this.properToolOnly && this.blockState != null && !this.canHarvestBlock())
