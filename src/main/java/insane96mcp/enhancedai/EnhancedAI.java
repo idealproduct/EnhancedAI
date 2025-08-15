@@ -14,8 +14,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static insane96mcp.enhancedai.ModQuack.BLOCKS;
-import static insane96mcp.enhancedai.ModEntities.TILE_ENTITIES;
+import static insane96mcp.enhancedai.ModBlocks.BLOCKS;
+import static insane96mcp.enhancedai.ModTileEntities.TILE_ENTITIES;
 
 @Mod(EnhancedAI.MOD_ID)
 public class EnhancedAI

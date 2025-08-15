@@ -11,7 +11,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 
 
-public class ModQuack {
+public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, "enhancedai");
 
