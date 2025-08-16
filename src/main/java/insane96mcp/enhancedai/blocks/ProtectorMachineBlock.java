@@ -33,7 +33,8 @@ public class ProtectorMachineBlock extends Block implements EntityBlock {
         if (!level.isClientSide) {
             BlockEntity be = level.getBlockEntity(pos);
             if (be instanceof ProtectorMachineBlockEntity machine) {
-                machine.cycleRange(); // 無 GUI 調整範圍
+                if(player.isCrouching()) machine.reducecycleRange();
+                else machine.cycleRange(); // 無 GUI 調整範圍
                 player.displayClientMessage(
                         net.minecraft.network.chat.Component.literal(
                                 "Protection range: " + machine.getRange() + " blocks"

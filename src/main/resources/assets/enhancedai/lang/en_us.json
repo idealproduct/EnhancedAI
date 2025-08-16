@@ -1,6 +1,8 @@
 {
 	"enhancedai.subtitle.creeper_cena_fuse": "AND HIS NAME IS ...",
 	"enhancedai.subtitle.creeper_cena_explode": "... JOHN CENA",
+	"item.enhancedai.protector_machine": "protector machine",
+	"block.enhancedai.protector_machine": "protector machine",
 
 	"unknown_potion": "Unknown potion"
 }

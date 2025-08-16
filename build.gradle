@@ -22,7 +22,7 @@ apply from: 'https://raw.githubusercontent.com/SizableShrimp/Forge-Class-Remappe
 
 version = "${mod_version}-mc${mc_version}"
 group = 'insane96mcp.enhancedai'
-archivesBaseName = 'EnhancedAI'
+archivesBaseName = 'EnhancedAI-modified'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17) // Mojang ships Java 8 to end users, so your mod should target Java 8.
 

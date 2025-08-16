@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "enhancedai:block/protector_machine"
+    }
+  }
+}

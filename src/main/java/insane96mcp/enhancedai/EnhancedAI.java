@@ -19,6 +19,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import static insane96mcp.enhancedai.ModBlocks.BLOCKS;
+import static insane96mcp.enhancedai.ModItems.ITEMS;
 import static insane96mcp.enhancedai.ModTileEntities.TILE_ENTITIES;
 import static insane96mcp.enhancedai.modules.zombie.ai.DiggingGoal.protectedAreas;
 
@@ -35,6 +36,7 @@ public class EnhancedAI
         MinecraftForge.EVENT_BUS.register(this);
         BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
         TILE_ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
+        ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
         EASounds.SOUND_EVENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
 		EAAttributes.ATTRIBUTES.register(FMLJavaModLoadingContext.get().getModEventBus());
 		EAEntities.ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
@@ -46,14 +48,14 @@ public class EnhancedAI
         FMLJavaModLoadingContext.get().getModEventBus().addListener(Targeting::xrayRangeAttribute);
 
         MinecraftForge.EVENT_BUS.addListener((TickEvent.ServerTickEvent event) -> {
-            if (event.phase != TickEvent.Phase.END)
+            /*if (event.phase != TickEvent.Phase.END)
                 return;
             protectedAreas.forEach((machinePos, pair) -> {
                 final var level = pair.getFirst();
                 final var aabb = pair.getSecond();
                 level.setBlock(new BlockPos(aabb.minX, aabb.minY, aabb.minZ), Blocks.CYAN_WOOL.defaultBlockState(), 3);
                 level.setBlock(new BlockPos(aabb.maxX, aabb.maxY, aabb.maxZ), Blocks.PINK_WOOL.defaultBlockState(), 3);
-            });
+            });*/
         });
     }
 

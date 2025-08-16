@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "IDI",
+        "DGD",
+        "IDI"
+    ],
+    "key": {
+        "D": {
+            "item": "minecraft:diamond_block"
+        },
+        "G": {
+            "item": "minecraft:gold_block"
+        },
+        "I": {
+            "item": "minecraft:iron_block"
+        }
+    },
+    "result": {
+        "item": "enhancedai:protector_machine",
+        "count": 1
+    },
+    "group": "enhancedai"
+}
